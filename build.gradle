@@ -1,0 +1,39 @@
+plugins {
+    id 'org.springframework.boot' version '3.3.0' // Spring Boot 플러그인
+    id 'io.spring.dependency-management' version '1.1.5' // Spring 의존성 관리 플러그인
+    id 'java' // Java 플러그인
+}
+
+group = 'com.example' // 프로젝트 그룹 ID
+version = '0.0.1-SNAPSHOT' // 프로젝트 버전
+sourceCompatibility = '17' // Java 소스 호환성 설정
+
+repositories {
+    mavenCentral() // 의존성 다운로드를 위한 Maven 중앙 저장소 사용
+}
+
+dependencies {
+    // Spring Boot dependencies
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-batch' // Spring Batch 스타터 의존성
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // Spring Data JPA 스타터 의존성
+
+    // MariaDB dependency
+    implementation 'org.mariadb.jdbc:mariadb-java-client:3.0.3' // MariaDB JDBC 드라이버 의존성
+
+    // Lombok dependency for logging and other utilities
+    compileOnly 'org.projectlombok:lombok' // Lombok 의존성 (컴파일 타임 전용)
+    annotationProcessor 'org.projectlombok:lombok' // Lombok 어노테이션 프로세서
+
+    // Test dependencies
+    testImplementation 'org.springframework.boot:spring-boot-starter-test' // Spring Boot 테스트 스타터 의존성
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher' // JUnit 플랫폼 런처 의존성
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8' // Java 컴파일 인코딩 설정
+}
+
+test {
+    useJUnitPlatform() // JUnit 플랫폼 사용 설정
+}

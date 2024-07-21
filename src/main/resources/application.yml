@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: test  # 애플리케이션 이름 설정
+  batch:
+    job:
+      enabled: false # Spring Batch Job 자동 실행 비활성화 (수동으로 실행 필요)
+  # 서버 관련 설정
+  server:
+    port: 8090  # 애플리케이션이 실행될 서버 포트 설정
+
+  # 데이터 소스 설정
+  datasource:
+    url: jdbc:mariadb://127.0.0.1:3306/weather  # MariaDB 데이터베이스 URL
+    username: weather  # 데이터베이스 사용자 이름
+    password: 1234     # 데이터베이스 사용자 비밀번호
+    driver-class-name: org.mariadb.jdbc.Driver  # MariaDB JDBC 드라이버 클래스 이름
+
+  sql:
+    init:
+      mode: never
+      schema-locations: classpath:org/springframework/batch/core/schema-mariadb.sql
+
+  jpa:
+    hibernate:
+      ddl-auto: none  # 스키마 자동 생성 비활성화
+    show-sql: true  # 실행되는 SQL 쿼리를 출력
+
+  # 로깅 설정
+logging:
+  level:
+    root: INFO
+    org.springframework.batch: DEBUG
+    com.ino.test.module.api.hello.batch: DEBUG
+
+# 공공 데이터 포털 API 인증키 설정
+data:
+  go:
+    kr:
+      apiKey: 1LdKTmd7NJGqu8qaM/v7vsG4ALzEYqPcRpfJzLQlcnTG6sGxJmKsOX2BnY7B9tsDD0ETc7oO0h47KQF6LW/7Lg==
